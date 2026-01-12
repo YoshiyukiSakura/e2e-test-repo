@@ -1,0 +1,16 @@
+{
+  "name": "e2e-test-repo",
+  "version": "1.0.0",
+  "description": "Simple test repository for Seedbed + Farmer E2E testing",
+  "main": "src/index.ts",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "keywords": ["test", "e2e"],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
