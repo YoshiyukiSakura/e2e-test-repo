@@ -8,6 +8,7 @@ export const config = {
   defaultName: 'World',
   environment: 'development',
   version: '1.0.0',
+  testMode: true,
   features: {
     logging: true,
     debug: false,
