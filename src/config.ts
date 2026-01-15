@@ -12,4 +12,5 @@ export const config = {
     logging: true,
     debug: false,
   },
+  logLevel_1715: 'info',
 }
