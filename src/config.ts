@@ -12,4 +12,5 @@ export const config = {
     logging: true,
     debug: false,
   },
+  appName_1721: 'E2E-App',
 }
