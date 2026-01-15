@@ -13,4 +13,5 @@ export const config = {
     debug: false,
   },
   logLevel_1355: "info",
+  apiVersion_1358: "v2",
 }
