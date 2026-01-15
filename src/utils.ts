@@ -19,3 +19,14 @@ export function add(a: number, b: number): number {
 export function multiply(a: number, b: number): number {
   return a * b
 }
+
+export function formatName_1624(first: string, last: string): string {
+  return `${last}, ${first}`
+}
+
+export function truncate_1621(text: string, maxLen: number): string {
+  if (text.length <= maxLen) {
+    return text
+  }
+  return text.slice(0, maxLen)
+}
