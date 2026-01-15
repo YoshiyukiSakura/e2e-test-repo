@@ -12,4 +12,5 @@ export const config = {
     logging: true,
     debug: false,
   },
+  timeout_1726: 5000,
 }
