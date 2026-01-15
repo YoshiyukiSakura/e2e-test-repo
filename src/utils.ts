@@ -8,6 +8,10 @@ export function greet(name: string): string {
   return `Hello, ${name}!`
 }
 
+export function sayHello(name: string): string {
+  return `Hi, ${name}!`
+}
+
 export function formatDate(date: Date): string {
   return date.toISOString()
 }
