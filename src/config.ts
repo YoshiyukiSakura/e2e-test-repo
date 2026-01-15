@@ -13,4 +13,5 @@ export const config = {
     debug: false,
   },
   appName_1621: 'E2E-App',
+  debugMode_1624: true,
 }
