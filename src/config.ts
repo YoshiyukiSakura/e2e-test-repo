@@ -12,4 +12,5 @@ export const config = {
     logging: true,
     debug: false,
   },
+  debugMode_2120: true,
 }
