@@ -12,4 +12,5 @@ export const config = {
     logging: true,
     debug: false,
   },
+  verboseLog_1545: false,
 }
