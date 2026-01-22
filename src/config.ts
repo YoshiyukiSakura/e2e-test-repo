@@ -8,6 +8,7 @@ export const config = {
   defaultName: 'World',
   environment: 'development',
   version: '1.0.0',
+  timeout_2134: 30000,
   features: {
     logging: true,
     debug: false,
