@@ -19,3 +19,7 @@ export function add(a: number, b: number): number {
 export function multiply(a: number, b: number): number {
   return a * b
 }
+
+export function farewell_1545(name: string): string {
+  return `Goodbye, ${name}!`
+}
