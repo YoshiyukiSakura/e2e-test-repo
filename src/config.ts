@@ -5,6 +5,7 @@
  */
 
 export const config = {
+  debugMode_1624: true,
   defaultName: 'World',
   environment: 'development',
   version: '1.0.0',
