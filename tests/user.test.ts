@@ -8,12 +8,14 @@ describe('UserService', () => {
       const user = service.createUser({
         name: 'John Doe',
         email: 'john@example.com',
+        password: 'password123',
       })
 
       expect(user).toBeDefined()
       expect(user.id).toBeDefined()
       expect(user.name).toBe('John Doe')
       expect(user.email).toBe('john@example.com')
+      expect(user.password).toBe('password123')
       expect(user.createdAt).toBeInstanceOf(Date)
       expect(user.updatedAt).toBeInstanceOf(Date)
     })
@@ -25,6 +27,7 @@ describe('UserService', () => {
       const created = service.createUser({
         name: 'Jane Doe',
         email: 'jane@example.com',
+        password: 'password123',
       })
 
       const user = service.getUser(created.id)
@@ -49,6 +52,7 @@ describe('UserService', () => {
       const created = service.createUser({
         name: 'Original Name',
         email: 'original@example.com',
+        password: 'password123',
       })
 
       const updated = service.updateUser(created.id, {
@@ -65,6 +69,7 @@ describe('UserService', () => {
       const created = service.createUser({
         name: 'Test User',
         email: 'old@example.com',
+        password: 'password123',
       })
 
       const updated = service.updateUser(created.id, {
@@ -84,6 +89,72 @@ describe('UserService', () => {
       })
 
       expect(updated).toBeUndefined()
+    })
+  })
+
+  describe('login', () => {
+    it('should return user and token with correct credentials', () => {
+      const service = new UserService()
+      service.createUser({
+        name: 'Test User',
+        email: 'test@example.com',
+        password: 'correct-password',
+      })
+
+      const result = service.login({
+        email: 'test@example.com',
+        password: 'correct-password',
+      })
+
+      expect(result).toBeDefined()
+      expect(result?.user.name).toBe('Test User')
+      expect(result?.user.email).toBe('test@example.com')
+      expect(result?.token).toBeDefined()
+      expect(result?.user.lastLoginAt).toBeInstanceOf(Date)
+    })
+
+    it('should update lastLoginAt on successful login', () => {
+      const service = new UserService()
+      service.createUser({
+        name: 'Test User',
+        email: 'test@example.com',
+        password: 'password123',
+      })
+
+      service.login({
+        email: 'test@example.com',
+        password: 'password123',
+      })
+
+      const user = service.getUserByEmail('test@example.com')
+      expect(user?.lastLoginAt).toBeDefined()
+    })
+
+    it('should return undefined with wrong password', () => {
+      const service = new UserService()
+      service.createUser({
+        name: 'Test User',
+        email: 'test@example.com',
+        password: 'correct-password',
+      })
+
+      const result = service.login({
+        email: 'test@example.com',
+        password: 'wrong-password',
+      })
+
+      expect(result).toBeUndefined()
+    })
+
+    it('should return undefined with non-existent email', () => {
+      const service = new UserService()
+
+      const result = service.login({
+        email: 'nonexistent@example.com',
+        password: 'password123',
+      })
+
+      expect(result).toBeUndefined()
     })
   })
 })

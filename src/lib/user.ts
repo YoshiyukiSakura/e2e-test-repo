@@ -11,8 +11,10 @@ export interface User {
   id: string
   name: string
   email: string
+  password: string
   createdAt: Date
   updatedAt: Date
+  lastLoginAt?: Date
 }
 
 /**
@@ -21,6 +23,23 @@ export interface User {
 export interface CreateUserInput {
   name: string
   email: string
+  password: string
+}
+
+/**
+ * Input for logging in
+ */
+export interface LoginInput {
+  email: string
+  password: string
+}
+
+/**
+ * Result of successful login
+ */
+export interface LoginResult {
+  user: User
+  token: string
 }
 
 /**
@@ -47,6 +66,7 @@ export class UserService {
       id,
       name: input.name,
       email: input.email,
+      password: input.password,
       createdAt: now,
       updatedAt: now,
     }
@@ -55,10 +75,33 @@ export class UserService {
   }
 
   /**
+   * Login a user with email and password
+   */
+  login(input: LoginInput): LoginResult | undefined {
+    const user = Array.from(this.users.values()).find(
+      (u) => u.email === input.email && u.password === input.password
+    )
+    if (!user) {
+      return undefined
+    }
+    user.lastLoginAt = new Date()
+    user.updatedAt = new Date()
+    const token = crypto.randomUUID()
+    return { user, token }
+  }
+
+  /**
    * Get a user by ID
    */
   getUser(id: string): User | undefined {
     return this.users.get(id)
+  }
+
+  /**
+   * Get a user by email
+   */
+  getUserByEmail(email: string): User | undefined {
+    return Array.from(this.users.values()).find((u) => u.email === email)
   }
 
   /**
