@@ -7,10 +7,14 @@
     "build": "tsc",
     "start": "node dist/index.js"
   },
-  "keywords": ["test", "e2e"],
+  "keywords": [
+    "test",
+    "e2e"
+  ],
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "typescript": "^5.0.0"
+    "typescript": "^5.0.0",
+    "vitest": "^4.0.18"
   }
 }

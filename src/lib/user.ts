@@ -6,13 +6,21 @@ export interface User {
   id: string
   name: string
   email: string
+  passwordHash?: string
   createdAt: Date
   updatedAt: Date
+  lastLoginAt?: Date
 }
 
 export interface CreateUserInput {
   name: string
   email: string
+  password?: string
+}
+
+export interface LoginInput {
+  email: string
+  password: string
 }
 
 export interface UpdateUserInput {
@@ -30,6 +38,7 @@ export class UserService {
       id,
       name: input.name,
       email: input.email,
+      passwordHash: input.password ? await this.hashPassword(input.password) : undefined,
       createdAt: now,
       updatedAt: now,
     }
@@ -54,5 +63,52 @@ export class UserService {
     }
     this.users.set(id, updatedUser)
     return updatedUser
+  }
+
+  async login(input: LoginInput): Promise<{ user: User; token: string } | null> {
+    const user = Array.from(this.users.values()).find((u) => u.email === input.email)
+    if (!user || !user.passwordHash) {
+      return null
+    }
+
+    const isValid = await this.verifyPassword(input.password, user.passwordHash)
+    if (!isValid) {
+      return null
+    }
+
+    // Update lastLoginAt
+    const now = new Date()
+    const updatedUser: User = {
+      ...user,
+      lastLoginAt: now,
+      updatedAt: now,
+    }
+    this.users.set(user.id, updatedUser)
+
+    const token = await this.generateToken(user.id)
+    return { user: updatedUser, token }
+  }
+
+  private async hashPassword(password: string): Promise<string> {
+    // Simple hash for E2E testing - use a real library in production
+    const encoder = new TextEncoder()
+    const data = encoder.encode(password + 'salt')
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data)
+    const hashArray = Array.from(new Uint8Array(hashBuffer))
+    return hashArray.map((b) => b.toString(16).padStart(2, '0')).join('')
+  }
+
+  private async verifyPassword(password: string, hash: string): Promise<boolean> {
+    const passwordHash = await this.hashPassword(password)
+    return passwordHash === hash
+  }
+
+  private async generateToken(userId: string): Promise<string> {
+    const payload = JSON.stringify({ userId, timestamp: Date.now(), nonce: crypto.randomUUID() })
+    const encoder = new TextEncoder()
+    const data = encoder.encode(payload)
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data)
+    const hashArray = Array.from(new Uint8Array(hashBuffer))
+    return hashArray.map((b) => b.toString(16).padStart(2, '0')).join('')
   }
 }
