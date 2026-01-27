@@ -12,6 +12,7 @@ export interface User {
   name: string
   email: string
   password: string
+  token?: string
   createdAt: Date
   updatedAt: Date
   lastLoginAt?: Date
@@ -88,6 +89,7 @@ export class UserService {
     user.lastLoginAt = new Date()
     user.updatedAt = new Date()
     const token = crypto.randomUUID()
+    user.token = token
     return { user, token }
   }
 
@@ -101,6 +103,20 @@ export class UserService {
     }
     user.lastLogoutAt = new Date()
     user.updatedAt = new Date()
+  }
+
+  /**
+   * Refresh a user's token
+   */
+  async refreshToken(token: string): Promise<string> {
+    const user = Array.from(this.users.values()).find((u) => u.token === token)
+    if (!user) {
+      return ''
+    }
+    const newToken = crypto.randomUUID()
+    user.token = newToken
+    user.updatedAt = new Date()
+    return newToken
   }
 
   /**

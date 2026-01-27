@@ -197,4 +197,72 @@ describe('UserService', () => {
       expect(service.getUser('non-existent-id')).toBeUndefined()
     })
   })
+
+  describe('refreshToken', () => {
+    it('should return new token when valid token is provided', async () => {
+      const service = new UserService()
+      service.createUser({
+        name: 'Test User',
+        email: 'test@example.com',
+        password: 'password123',
+      })
+      const loginResult = service.login({
+        email: 'test@example.com',
+        password: 'password123',
+      })
+      const originalToken = loginResult?.token
+
+      const newToken = await service.refreshToken(originalToken!)
+
+      expect(newToken).toBeDefined()
+      expect(newToken).not.toBe(originalToken)
+    })
+
+    it('should update user token field', async () => {
+      const service = new UserService()
+      service.createUser({
+        name: 'Test User',
+        email: 'test@example.com',
+        password: 'password123',
+      })
+      const loginResult = service.login({
+        email: 'test@example.com',
+        password: 'password123',
+      })
+      const originalToken = loginResult?.token
+
+      await service.refreshToken(originalToken!)
+
+      const user = service.getUserByEmail('test@example.com')
+      expect(user?.token).not.toBe(originalToken)
+    })
+
+    it('should update updatedAt when token is refreshed', async () => {
+      const service = new UserService()
+      const user = service.createUser({
+        name: 'Test User',
+        email: 'test@example.com',
+        password: 'password123',
+      })
+      const loginResult = service.login({
+        email: 'test@example.com',
+        password: 'password123',
+      })
+      const originalUpdatedAt = user.updatedAt
+
+      await new Promise((resolve) => setTimeout(resolve, 10))
+      await service.refreshToken(loginResult!.token)
+
+      const updatedUser = service.getUser(user.id)
+      expect(updatedUser?.updatedAt.getTime()).toBeGreaterThan(originalUpdatedAt.getTime())
+    })
+
+    it('should return empty string when token is invalid', async () => {
+      const service = new UserService()
+
+      const newToken = await service.refreshToken('invalid-token')
+
+      expect(newToken).toBe('')
+    })
+  })
 })
