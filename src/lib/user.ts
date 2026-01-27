@@ -12,6 +12,7 @@ export interface User {
   name: string
   email: string
   password: string
+  passwordHash?: string
   token?: string
   createdAt: Date
   updatedAt: Date
@@ -117,6 +118,23 @@ export class UserService {
     user.token = newToken
     user.updatedAt = new Date()
     return newToken
+  }
+
+  /**
+   * Change a user's password
+   */
+  async changePassword(userId: string, oldPassword: string, newPassword: string): Promise<boolean> {
+    const user = this.users.get(userId)
+    if (!user) {
+      return false
+    }
+    if (user.password !== oldPassword) {
+      return false
+    }
+    user.password = newPassword
+    user.passwordHash = newPassword
+    user.updatedAt = new Date()
+    return true
   }
 
   /**
