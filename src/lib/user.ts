@@ -15,6 +15,7 @@ export interface User {
   createdAt: Date
   updatedAt: Date
   lastLoginAt?: Date
+  lastLogoutAt?: Date
 }
 
 /**
@@ -88,6 +89,18 @@ export class UserService {
     user.updatedAt = new Date()
     const token = crypto.randomUUID()
     return { user, token }
+  }
+
+  /**
+   * Logout a user by ID
+   */
+  async logout(userId: string): Promise<void> {
+    const user = this.users.get(userId)
+    if (!user) {
+      return
+    }
+    user.lastLogoutAt = new Date()
+    user.updatedAt = new Date()
   }
 
   /**

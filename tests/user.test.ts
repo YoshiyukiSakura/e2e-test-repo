@@ -157,4 +157,44 @@ describe('UserService', () => {
       expect(result).toBeUndefined()
     })
   })
+
+  describe('logout', () => {
+    it('should set lastLogoutAt when user exists', async () => {
+      const service = new UserService()
+      const created = service.createUser({
+        name: 'Test User',
+        email: 'test@example.com',
+        password: 'password123',
+      })
+
+      await service.logout(created.id)
+
+      const user = service.getUser(created.id)
+      expect(user?.lastLogoutAt).toBeInstanceOf(Date)
+    })
+
+    it('should update updatedAt when user logs out', async () => {
+      const service = new UserService()
+      const created = service.createUser({
+        name: 'Test User',
+        email: 'test@example.com',
+        password: 'password123',
+      })
+      const originalUpdatedAt = created.updatedAt
+
+      await new Promise((resolve) => setTimeout(resolve, 10))
+      await service.logout(created.id)
+
+      const user = service.getUser(created.id)
+      expect(user?.updatedAt.getTime()).toBeGreaterThan(originalUpdatedAt.getTime())
+    })
+
+    it('should do nothing when user does not exist', async () => {
+      const service = new UserService()
+
+      await service.logout('non-existent-id')
+
+      expect(service.getUser('non-existent-id')).toBeUndefined()
+    })
+  })
 })
