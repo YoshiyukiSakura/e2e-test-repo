@@ -1,0 +1,3 @@
+[E2E-TEST] CrossAgent PR draft gate smoke for GitHub issue #38.
+
+This harmless text file verifies the repo-intake PR Draft Package flow.
