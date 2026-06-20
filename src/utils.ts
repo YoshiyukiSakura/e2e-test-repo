@@ -19,3 +19,13 @@ export function add(a: number, b: number): number {
 export function multiply(a: number, b: number): number {
   return a * b
 }
+
+export function truncate_2134(text: string, maxLen: number): string {
+  if (maxLen < 0) {
+    return ''
+  }
+  if (text.length <= maxLen) {
+    return text
+  }
+  return text.slice(0, maxLen)
+}
