@@ -19,6 +19,28 @@ src/
   config.ts      - Configuration (test targets)
 ```
 
+## Configuration
+
+`src/config.ts` exports a `config` object used by the sample entrypoint.
+
+- `defaultName`: default name used by `greet`
+- `environment`: current runtime environment label
+- `version`: current app version string
+- `timeout_2134`: timeout value (milliseconds) for E2E test flows
+- `features.logging`: enable logging
+- `features.debug`: enable debug mode
+
+## Utilities
+
+`truncate_2134` truncates a string to a maximum length.
+
+```ts
+import { truncate_2134 } from './utils'
+
+const result = truncate_2134('Hello, E2E!', 5)
+// result === 'Hello'
+```
+
 ## Cleanup
 
 Test branches and PRs can be identified by the `[E2E-TEST]` prefix and cleaned up periodically.
