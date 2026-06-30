@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Draft-first loop v4</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --evidence-border: #10b981;
+        --violet-accent: #8b5cf6;
+        --slate-block: #334155;
+        --ink: #0f172a;
+        --page: #f8fafc;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        background: var(--page);
+        color: var(--ink);
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+      }
+
+      main {
+        width: min(760px, calc(100vw - 32px));
+        border: 10px solid var(--evidence-border);
+        border-radius: 8px;
+        background: #ffffff;
+        box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
+        overflow: hidden;
+      }
+
+      .accent {
+        height: 18px;
+        background: var(--violet-accent);
+      }
+
+      .content {
+        padding: clamp(28px, 6vw, 56px);
+        display: grid;
+        gap: 24px;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(2rem, 8vw, 4.5rem);
+        line-height: 0.95;
+        letter-spacing: 0;
+      }
+
+      .marker {
+        margin: 0;
+        padding: 18px 20px;
+        border-radius: 6px;
+        background: var(--slate-block);
+        color: #ffffff;
+        font-size: clamp(1rem, 3vw, 1.35rem);
+        font-weight: 700;
+        letter-spacing: 0;
+        overflow-wrap: anywhere;
+      }
+
+      footer {
+        padding: 18px 24px;
+        background: #eef2ff;
+        color: var(--ink);
+        font-weight: 800;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <main aria-label="Draft-first visual evidence loop v4">
+      <div class="accent" aria-hidden="true"></div>
+      <section class="content">
+        <h1>CrossAgent visual evidence</h1>
+        <p class="marker">DRAFT_FIRST_EVIDENCE_20260630_V4</p>
+      </section>
+      <footer>Draft-first loop v4</footer>
+    </main>
+  </body>
+</html>
