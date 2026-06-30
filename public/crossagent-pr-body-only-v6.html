@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CrossAgent PR body-only smoke v6</title>
+    <style>
+      :root {
+        color: #152018;
+        background: #f6fbf4;
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        min-height: 100vh;
+        margin: 0;
+        display: grid;
+        place-items: center;
+        padding: 32px 20px;
+      }
+
+      main {
+        width: min(720px, 100%);
+        border: 3px solid #1f9d55;
+        border-radius: 8px;
+        background: #ffffff;
+        box-shadow: 0 18px 50px rgba(31, 157, 85, 0.18);
+        padding: clamp(28px, 6vw, 56px);
+      }
+
+      .status {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 24px;
+        color: #0f713c;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0;
+      }
+
+      .check {
+        display: grid;
+        place-items: center;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        color: #ffffff;
+        background: #1f9d55;
+        font-size: 30px;
+        line-height: 1;
+      }
+
+      h1 {
+        margin: 0 0 18px;
+        font-size: 3.5rem;
+        line-height: 1.02;
+      }
+
+      p {
+        margin: 0;
+        font-size: 1.7rem;
+        line-height: 1.35;
+        color: #24462f;
+      }
+
+      strong {
+        display: block;
+        margin-top: 16px;
+        color: #0f713c;
+      }
+
+      @media (max-width: 560px) {
+        h1 {
+          font-size: 2.25rem;
+        }
+
+        p {
+          font-size: 1.3rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main aria-labelledby="smoke-title">
+      <div class="status" aria-label="Success">
+        <span class="check" aria-hidden="true">&#10003;</span>
+        <span>Verified marker</span>
+      </div>
+      <h1 id="smoke-title">CrossAgent PR body-only smoke v6</h1>
+      <p>Evidence belongs in the PR body</p>
+      <strong>No redundant Delivery Evidence Summary comment</strong>
+    </main>
+  </body>
+</html>
