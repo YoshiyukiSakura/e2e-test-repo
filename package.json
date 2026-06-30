@@ -5,12 +5,17 @@
   "main": "src/index.ts",
   "scripts": {
     "build": "tsc",
-    "start": "node dist/index.js"
+    "start": "node dist/index.js",
+    "test:e2e:autonomous-visual-smoke": "playwright test e2e/autonomous-visual-smoke.spec.ts --project=chromium"
   },
-  "keywords": ["test", "e2e"],
+  "keywords": [
+    "test",
+    "e2e"
+  ],
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "@playwright/test": "^1.61.1",
     "typescript": "^5.0.0"
   }
 }
