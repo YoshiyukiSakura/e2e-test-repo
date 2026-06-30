@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CrossAgent PR body evidence smoke</title>
+    <style>
+      :root {
+        color-scheme: light;
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+        background: #f4f7fb;
+        color: #182033;
+      }
+
+      body {
+        min-height: 100vh;
+        margin: 0;
+        display: grid;
+        place-items: center;
+        padding: 32px;
+      }
+
+      main {
+        width: min(720px, 100%);
+        border: 1px solid #cad5e6;
+        border-radius: 8px;
+        background: #ffffff;
+        box-shadow: 0 18px 50px rgb(24 32 51 / 12%);
+        overflow: hidden;
+      }
+
+      .success {
+        display: flex;
+        gap: 16px;
+        align-items: flex-start;
+        padding: 28px;
+        border-left: 8px solid #168a4a;
+        background: linear-gradient(90deg, #eaf8f0 0%, #ffffff 70%);
+      }
+
+      .badge {
+        width: 48px;
+        height: 48px;
+        flex: 0 0 48px;
+        display: grid;
+        place-items: center;
+        border-radius: 999px;
+        background: #168a4a;
+        color: #ffffff;
+        font-size: 30px;
+        font-weight: 800;
+        line-height: 1;
+      }
+
+      h1 {
+        margin: 0 0 12px;
+        font-size: clamp(2rem, 6vw, 3rem);
+        line-height: 1.05;
+      }
+
+      p {
+        margin: 0;
+        font-size: 1.125rem;
+        line-height: 1.55;
+      }
+
+      .evidence {
+        display: grid;
+        gap: 12px;
+        padding: 0 28px 28px;
+      }
+
+      .evidence strong {
+        color: #168a4a;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section class="success" data-testid="success-marker" aria-label="Success marker">
+        <div class="badge" aria-hidden="true">&#10003;</div>
+        <div>
+          <h1>CrossAgent PR body evidence smoke</h1>
+          <p><strong>Success:</strong> reviewer-facing evidence summary is visible.</p>
+        </div>
+      </section>
+      <section class="evidence" aria-label="Evidence summary">
+        <p><strong>Reviewer-visible evidence in PR body</strong></p>
+        <p>App audit source preserved</p>
+      </section>
+    </main>
+  </body>
+</html>
