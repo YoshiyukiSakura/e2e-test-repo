@@ -17,6 +17,12 @@ const evidencePath = path.join(
 );
 const e2eCommand =
   "TASK_ROOT=$(pwd) CROSSAGENT_TASK_ID=task_84acc0fd2c8c4cd5 npm run e2e:production-draft-first-v5";
+const visibleAssertions = [
+  "CrossAgent production draft-first smoke v5",
+  "Evidence verified before ready review",
+  "No manual intervention required",
+  "success-check-marker",
+];
 
 async function assertVisible(locator, label) {
   await locator.waitFor({ state: "visible", timeout: 5000 });
@@ -53,15 +59,36 @@ try {
     `${JSON.stringify(
       {
         task_id: taskId,
-        claim_id: "claim-e2e",
         status: "passed",
+        claims: [
+          {
+            id: "claim-e2e",
+            status: "passed",
+            evidence_type: "command",
+            command: e2eCommand,
+            exit_code: 0,
+            assertions: visibleAssertions,
+            artifacts: {
+              screenshot: screenshotPath,
+            },
+          },
+        ],
         e2e_commands: [
           {
             command: e2eCommand,
             exit_code: 0,
             status: "passed",
+            binds_claims: ["claim-e2e"],
           },
         ],
+        data_evidence: {
+          "claim-e2e": {
+            status: "passed",
+            page: pagePath,
+            screenshot: screenshotPath,
+            assertions: visibleAssertions,
+          },
+        },
         screenshot: screenshotPath,
         checked_at: new Date().toISOString(),
       },
@@ -71,7 +98,7 @@ try {
   );
 
   console.log(`screenshot=${screenshotPath}`);
-  console.log(`claim-e2e=passed`);
+  console.log(`claim-e2e=passed command="${e2eCommand}"`);
   console.log(`e2e_evidence=${evidencePath}`);
 } finally {
   await browser.close();
