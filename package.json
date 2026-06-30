@@ -5,12 +5,14 @@
   "main": "src/index.ts",
   "scripts": {
     "build": "tsc",
+    "test:e2e": "playwright test",
     "start": "node dist/index.js"
   },
   "keywords": ["test", "e2e"],
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "@playwright/test": "^1.53.2",
     "typescript": "^5.0.0"
   }
 }
