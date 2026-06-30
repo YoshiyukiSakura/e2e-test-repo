@@ -5,12 +5,14 @@
   "main": "src/index.ts",
   "scripts": {
     "build": "tsc",
-    "start": "node dist/index.js"
+    "start": "node dist/index.js",
+    "test:e2e:zero-touch-visual-smoke": "playwright test tests/e2e/zero-touch-visual-smoke.spec.ts --reporter=list"
   },
   "keywords": ["test", "e2e"],
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "@playwright/test": "^1.61.1",
     "typescript": "^5.0.0"
   }
 }
