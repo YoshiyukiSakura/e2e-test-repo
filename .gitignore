@@ -1,4 +1,5 @@
 node_modules/
 dist/
+.iteration/
 .DS_Store
 *.log
