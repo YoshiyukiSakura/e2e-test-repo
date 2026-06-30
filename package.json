@@ -5,12 +5,14 @@
   "main": "src/index.ts",
   "scripts": {
     "build": "tsc",
+    "test:e2e:crossagent-production-draft-first-v5": "node scripts/crossagent-production-draft-first-v5.e2e.mjs",
     "start": "node dist/index.js"
   },
   "keywords": ["test", "e2e"],
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "playwright": "^1.56.1",
     "typescript": "^5.0.0"
   }
 }
