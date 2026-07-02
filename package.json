@@ -5,12 +5,14 @@
   "main": "src/index.ts",
   "scripts": {
     "build": "tsc",
-    "start": "node dist/index.js"
+    "start": "node dist/index.js",
+    "test:e2e:postfix-r2-20260702T080": "PLAYWRIGHT_BROWSERS_PATH=0 TASK_ROOT=$(pwd) CROSSAGENT_TASK_ID=task_384c27e1936b41e1 node scripts/crossagent-postfix-r2-smoke-20260702T080.e2e.mjs"
   },
   "keywords": ["test", "e2e"],
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "playwright": "^1.61.1",
     "typescript": "^5.0.0"
   }
 }
