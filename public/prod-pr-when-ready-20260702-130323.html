@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CrossAgent PR when ready</title>
+    <style>
+      :root {
+        color-scheme: light;
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        background:
+          radial-gradient(circle at 20% 20%, rgba(20, 184, 166, 0.28), transparent 28rem),
+          linear-gradient(135deg, #10231f 0%, #15362f 42%, #2e3f34 100%);
+        color: #f8fbf5;
+      }
+
+      main {
+        width: min(90vw, 720px);
+        padding: clamp(2rem, 6vw, 4.5rem);
+        border: 2px solid rgba(187, 247, 208, 0.72);
+        border-radius: 8px;
+        background: rgba(8, 28, 24, 0.86);
+        box-shadow: 0 24px 70px rgba(0, 0, 0, 0.36);
+        text-align: center;
+      }
+
+      .success-marker {
+        width: 108px;
+        height: 108px;
+        margin: 0 auto 1.75rem;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        background: #22c55e;
+        color: #052e16;
+        font-size: 4.25rem;
+        font-weight: 900;
+        line-height: 1;
+        box-shadow: 0 0 0 12px rgba(34, 197, 94, 0.18);
+      }
+
+      h1 {
+        margin: 0 0 1rem;
+        font-size: clamp(2.25rem, 7vw, 4.5rem);
+        line-height: 1;
+        letter-spacing: 0;
+      }
+
+      p {
+        margin: 0.6rem 0 0;
+        font-size: clamp(1.1rem, 3vw, 1.6rem);
+        line-height: 1.45;
+      }
+
+      code {
+        display: inline-block;
+        margin-top: 1.15rem;
+        padding: 0.55rem 0.75rem;
+        border: 1px solid rgba(187, 247, 208, 0.45);
+        border-radius: 6px;
+        background: rgba(220, 252, 231, 0.1);
+        color: #d9f99d;
+        font: 700 1rem/1.35 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <main aria-label="CrossAgent delivery status">
+      <div class="success-marker" data-testid="success-marker" aria-label="success check marker">✓</div>
+      <h1>CrossAgent PR when ready</h1>
+      <p>Evidence closed before PR create</p>
+      <code>prod-pr-when-ready-20260702-130323</code>
+    </main>
+  </body>
+</html>
